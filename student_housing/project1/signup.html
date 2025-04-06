@@ -1,0 +1,77 @@
+<!-- templates/student_signup.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Sign Up</title>
+    <!-- Materialize CSS CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="container">
+
+    <h4 class="center-align">Student Sign Up</h4>
+
+    <div class="row">
+        <form method="POST" class="col s12">
+            {% csrf_token %}
+
+            
+
+            <!-- First Name -->
+            <div class="input-field col s12">
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+            </div>
+
+            <!-- Last Name -->
+            <div class="input-field col s12">
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+            </div>
+
+            <!-- Email -->
+            <div class="input-field col s12">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+            </div>
+
+            <!-- Country -->
+            <div class="input-field col s12">
+                {{ form.country.label_tag }}
+                {{ form.country }}
+            </div>
+
+            <!-- Phone -->
+            <div class="input-field col s12">
+                {{ form.phone.label_tag }}
+                {{ form.phone }}
+            </div>
+
+            <!-- Gender -->
+            <div class="input-field col s12">
+                {{ form.gender.label_tag }}
+                {{ form.gender }}
+            </div>
+
+            <!-- Password -->
+            <div class="input-field col s12">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="input-field col s12">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+            </div>
+
+            <!-- Submit and Login -->
+            <button type="submit" class="btn green">Sign Up</button>
+            <a href="{% url 'login' %}" class="btn blue right">Login</a>
+        </form>
+    </div>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>

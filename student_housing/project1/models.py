@@ -13,6 +13,7 @@ class Student(AbstractUser):
     )  # Gender choices
 
     # Optional: if you want to display full name easily
+    name = forms.CharField(max_length=30, required=True, label='Full Name')
     def __str__(self):
         return f"{self.get_full_name()} ({self.username})"
 
