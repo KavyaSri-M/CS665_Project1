@@ -21,3 +21,19 @@ def student_signup(request):
         form = StudentSignUpForm()
 
     return render(request, 'signup.html', {'form': form})
+
+
+from .forms import RoomForm
+
+def add_room(request):
+    if request.method == 'POST':
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('room_success')  # After saving, redirect to success page or list
+    else:
+        form = RoomForm()
+    return render(request, 'add_room.html', {'form': form})
+
+def room_success(request):
+    return render(request, 'room_success.html')

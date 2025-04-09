@@ -23,3 +23,17 @@ class StudentSignUpForm(UserCreationForm):
             'phone',
             'gender'
         ]
+
+from .models import Room
+
+class RoomForm(forms.ModelForm):
+    class Meta:
+        model = Room
+        fields = ['room_type', 'capacity', 'monthly_rent', 'floor', 'is_available']
+        widgets = {
+            'room_type': forms.TextInput(attrs={'class': 'validate'}),
+            'capacity': forms.NumberInput(attrs={'class': 'validate'}),
+            'monthly_rent': forms.NumberInput(attrs={'class': 'validate'}),
+            'floor': forms.NumberInput(attrs={'class': 'validate'}),
+            'is_available': forms.CheckboxInput(),
+        }
