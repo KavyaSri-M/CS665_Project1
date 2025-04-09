@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room List</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="blue lighten-5">
+
+    <div class="container">
+        <h4 class="center-align">Room List</h4>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Capacity</th>
+                    <th>Rent</th>
+                    <th>Floor</th>
+                    <th>Available</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in rooms %}
+                <tr>
+                    <td>{{ room.room_id }}</td>
+                    <td>{{ room.room_type }}</td>
+                    <td>{{ room.capacity }}</td>
+                    <td>{{ room.monthly_rent }}</td>
+                    <td>{{ room.floor }}</td>
+                    <td>{{ room.is_available }}</td>
+                    <td>
+                        <a href="{% url 'edit_room' room.room_id %}" class="btn-small blue darken-2">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

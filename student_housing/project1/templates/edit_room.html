@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Room</title>
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="blue lighten-5">
+
+    <div class="container">
+        <h4 class="center-align">Edit Room: {{ room.room_type }}</h4>
+
+        <div class="row">
+            <form method="post" class="col s12">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.room_type.label_tag }}
+                        {{ form.room_type }}
+                    </div>
+                    <div class="input-field col s12">
+                        {{ form.capacity.label_tag }}
+                        {{ form.capacity }}
+                    </div>
+                    <div class="input-field col s12">
+                        {{ form.monthly_rent.label_tag }}
+                        {{ form.monthly_rent }}
+                    </div>
+                    <div class="input-field col s12">
+                        {{ form.floor.label_tag }}
+                        {{ form.floor }}
+                    </div>
+                    <div class="input-field col s12">
+                        <label>
+                            {{ form.is_available }} Available
+                        </label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light blue darken-3" type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
