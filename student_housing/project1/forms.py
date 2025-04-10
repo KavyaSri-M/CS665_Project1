@@ -37,3 +37,18 @@ class RoomForm(forms.ModelForm):
             'floor': forms.NumberInput(attrs={'class': 'validate'}),
             'is_available': forms.CheckboxInput(),
         }
+
+
+from .models import MaintenanceRequest
+
+class MaintenanceRequestForm(forms.ModelForm):
+    class Meta:
+        model = MaintenanceRequest
+        fields = ['student', 'room', 'issue', 'status']
+        widgets = {
+            'student': forms.Select(attrs={'class': 'browser-default'}),
+            'room': forms.Select(attrs={'class': 'browser-default'}),
+            'issue': forms.Textarea(attrs={'class': 'materialize-textarea'}),
+            'status': forms.Select(attrs={'class': 'browser-default'}),
+        }
+

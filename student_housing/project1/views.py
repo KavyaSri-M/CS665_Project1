@@ -59,3 +59,25 @@ def room_list(request):
     return render(request, 'room_list.html', {'rooms': rooms})
 
 
+def delete_room(request, room_id):
+    room = get_object_or_404(Room, pk=room_id)
+
+    if request.method == 'POST':
+        room.delete()
+        return redirect('room_list')  # Redirect to room list after deletion
+
+    return render(request, 'delete_room.html', {'room': room})
+
+
+from .forms import MaintenanceRequestForm
+
+def add_maintenance_request(request):
+    if request.method == 'POST':
+        form = MaintenanceRequestForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('maintenance_success')  # Redirect to success page or list
+    else:
+        form = MaintenanceRequestForm()
+    return render(request, 'add_maintenance_request.html', {'form': form})
+
