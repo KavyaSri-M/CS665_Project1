@@ -31,6 +31,7 @@
                     <td>{{ room.is_available }}</td>
                     <td>
                         <a href="{% url 'edit_room' room.room_id %}" class="btn-small blue darken-2">Edit</a>
+                        <a href="{% url 'delete_room' room.room_id %}" class="btn-small red darken-2">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Room</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="red lighten-5">
+    <div class="container center-align" style="margin-top: 100px;">
+        <h5>Are you sure you want to delete Room {{ room.room_id }} - {{ room.room_type }}?</h5>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn red darken-2">Yes, Delete</button>
+            <a href="{% url 'room_list' %}" class="btn grey">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
