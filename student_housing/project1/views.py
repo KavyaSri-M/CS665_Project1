@@ -81,3 +81,7 @@ def add_maintenance_request(request):
         form = MaintenanceRequestForm()
     return render(request, 'add_maintenance_request.html', {'form': form})
 
+def maintenance_success(request):
+    return render(request, 'maintenance_success.html')
+
+
