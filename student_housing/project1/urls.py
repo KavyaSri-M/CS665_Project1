@@ -13,4 +13,8 @@ urlpatterns = [
     path('maintenance-success/', views.maintenance_success, name='maintenance_success'),
     path('edit-maintenance-request/<int:request_id>/', views.edit_maintenance_request, name='edit_maintenance_request'),
     path('maintenance-list/', views.maintenance_list, name='maintenance_list'),
+    path('delete-maintenance-request/<int:request_id>/', views.delete_maintenance_request, name='delete_maintenance_request'),
+    path('add-room-assignment/', views.add_room_assignment, name='add_room_assignment'),
+    path('room-assignment-success/', views.room_assignment_success, name='room_assignment_success'),
+
 ]

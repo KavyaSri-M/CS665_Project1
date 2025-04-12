@@ -52,3 +52,15 @@ class MaintenanceRequestForm(forms.ModelForm):
             'status': forms.Select(attrs={'class': 'browser-default'}),
         }
 
+from .models import RoomAssignment
+
+class RoomAssignmentForm(forms.ModelForm):
+    class Meta:
+        model = RoomAssignment
+        fields = ['student', 'room', 'start_date']
+        widgets = {
+            'student': forms.Select(attrs={'class': 'browser-default'}),
+            'room': forms.Select(attrs={'class': 'browser-default'}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'validate'}),
+        }
+        
