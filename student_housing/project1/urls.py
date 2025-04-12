@@ -16,5 +16,7 @@ urlpatterns = [
     path('delete-maintenance-request/<int:request_id>/', views.delete_maintenance_request, name='delete_maintenance_request'),
     path('add-room-assignment/', views.add_room_assignment, name='add_room_assignment'),
     path('room-assignment-success/', views.room_assignment_success, name='room_assignment_success'),
+    path('room-assignment-list/', views.room_assignment_list, name='room_assignment_list'),
+
 
 ]

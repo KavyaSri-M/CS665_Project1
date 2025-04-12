@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room Assignments List</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="blue lighten-5">
+
+    <div class="container">
+        <h4 class="center-align">Room Assignments</h4>
+
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Assignment ID</th>
+                    <th>Student Name</th>
+                    <th>Room ID</th>
+                    <th>Room Type</th>
+                    <th>Start Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assignment in assignments %}
+                <tr>
+                    <td>{{ assignment.assignment_id }}</td>
+                    <td>{{ assignment.student.get_full_name }}</td>
+                    <td>{{ assignment.room.room_id }}</td>
+                    <td>{{ assignment.room.room_type }}</td>
+                    <td>{{ assignment.start_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

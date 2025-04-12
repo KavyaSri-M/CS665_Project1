@@ -112,3 +112,21 @@ def maintenance_list(request):
     return render(request, 'maintenance_list.html', {'maintenance_requests': maintenance_requests})
 
 
+from .forms import RoomAssignmentForm
+
+def add_room_assignment(request):
+    if request.method == 'POST':
+        form = RoomAssignmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('room_assignment_success')  # Redirect after saving
+    else:
+        form = RoomAssignmentForm()
+
+    return render(request, 'add_room_assignment.html', {'form': form})
+
+def room_assignment_list(request):
+    assignments = RoomAssignment.objects.all()
+    return render(request, 'room_assignment_list.html', {'assignments': assignments})
+
+
