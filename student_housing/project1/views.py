@@ -4,9 +4,13 @@ from django.shortcuts import render
 
 
 # views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
 from .forms import StudentSignUpForm
+from .models import *
+
+def home(request):
+    return render(request,'home.html')
 
 def student_signup(request):
     if request.method == 'POST':
@@ -56,7 +60,7 @@ def edit_room(request, room_id):
 
 def room_list(request):
     rooms = Room.objects.all()
-    return render(request, 'room_list.html', {'rooms': rooms})
+    return render(request, 'rooms_list.html', {'rooms': rooms})
 
 
 def delete_room(request, room_id):

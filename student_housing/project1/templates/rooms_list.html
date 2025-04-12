@@ -3,11 +3,18 @@
 <head>
     <title>Room List</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        th,td{
+            border: 1px solid grey;
+            text-align: center;
+        }
+    </style>
 </head>
 <body class="blue lighten-5">
 
     <div class="container">
         <h4 class="center-align">Room List</h4>
+        {% if rooms %}
         <table class="striped">
             <thead>
                 <tr>
@@ -37,6 +44,15 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% else %}
+        <center>
+            <br><br>
+        <h6 style="color:red;"> No rooms found</h6>
+        <br>
+        <br>
+            <a href="/add-room/" class="btn-small blue darken-2">Add New Room</a>
+        {% endif %}
+    </center>
     </div>
 
 </body>
