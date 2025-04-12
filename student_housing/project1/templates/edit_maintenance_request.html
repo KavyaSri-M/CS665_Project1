@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Maintenance Request</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="blue lighten-5">
+
+    <div class="container">
+        <h4 class="center-align">Edit Maintenance Request #{{ maintenance_request.request_id }}</h4>
+
+        <div class="row">
+            <form method="post" class="col s12">
+                {% csrf_token %}
+
+                <div class="input-field col s12">
+                    <label>Student</label>
+                    {{ form.student }}
+                </div>
+
+                <div class="input-field col s12">
+                    <label>Room</label>
+                    {{ form.room }}
+                </div>
+
+                <div class="input-field col s12">
+                    {{ form.issue.label_tag }}
+                    {{ form.issue }}
+                </div>
+
+                <div class="input-field col s12">
+                    <label>Status</label>
+                    {{ form.status }}
+                </div>
+
+                <button class="btn waves-effect waves-light blue darken-3" type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
