@@ -17,6 +17,8 @@ urlpatterns = [
     path('add-room-assignment/', views.add_room_assignment, name='add_room_assignment'),
     path('room-assignment-success/', views.room_assignment_success, name='room_assignment_success'),
     path('room-assignment-list/', views.room_assignment_list, name='room_assignment_list'),
+    path('edit-room-assignment/<int:assignment_id>/', views.edit_room_assignment, name='edit_room_assignment'),
+    path('delete-room-assignment/<int:assignment_id>/', views.delete_room_assignment, name='delete_room_assignment'),
 
 
 ]

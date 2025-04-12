@@ -130,3 +130,26 @@ def room_assignment_list(request):
     return render(request, 'room_assignment_list.html', {'assignments': assignments})
 
 
+def edit_room_assignment(request, assignment_id):
+    assignment = get_object_or_404(RoomAssignment, pk=assignment_id)
+
+    if request.method == 'POST':
+        form = RoomAssignmentForm(request.POST, instance=assignment)
+        if form.is_valid():
+            form.save()
+            return redirect('room_assignment_list')
+    else:
+        form = RoomAssignmentForm(instance=assignment)
+
+    return render(request, 'edit_room_assignment.html', {'form': form, 'assignment': assignment})
+
+def delete_room_assignment(request, assignment_id):
+    assignment = get_object_or_404(RoomAssignment, pk=assignment_id)
+
+    if request.method == 'POST':
+        assignment.delete()
+        return redirect('room_assignment_list')
+
+    return render(request, 'confirm_delete_room_assignment.html', {'assignment': assignment})
+
+

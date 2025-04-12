@@ -27,6 +27,11 @@
                     <td>{{ assignment.room.room_id }}</td>
                     <td>{{ assignment.room.room_type }}</td>
                     <td>{{ assignment.start_date }}</td>
+                    <td>
+    <a href="{% url 'edit_room_assignment' assignment.assignment_id %}" class="btn-small blue darken-2">Edit</a>
+    <a href="{% url 'delete_room_assignment' assignment.assignment_id %}" class="btn-small red darken-2">Delete</a>
+</td>
+
                 </tr>
                 {% endfor %}
             </tbody>
