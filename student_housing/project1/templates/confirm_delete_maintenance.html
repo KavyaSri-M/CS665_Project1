@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Maintenance Request</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="red lighten-5">
+
+    <div class="container center-align" style="margin-top: 100px;">
+        <h5>Are you sure you want to delete Maintenance Request #{{ maintenance_request.request_id }}?</h5>
+        <p><strong>Issue:</strong> {{ maintenance_request.issue }}</p>
+        <p><strong>Status:</strong> {{ maintenance_request.status }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn red darken-2">Yes, Delete</button>
+            <a href="{% url 'maintenance_list' %}" class="btn grey">Cancel</a>
+        </form>
+    </div>
+
+</body>
+</html>

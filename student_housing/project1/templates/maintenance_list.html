@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maintenance Requests List</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="blue lighten-5">
+
+    <div class="container">
+        <h4 class="center-align">Maintenance Requests</h4>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Room</th>
+                    <th>Issue</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in maintenance_requests %}
+                <tr>
+                    <td>{{ request.request_id }}</td>
+                    <td>{{ request.student.get_full_name }}</td>
+                    <td>{{ request.room.room_id }}</td>
+                    <td>{{ request.issue }}</td>
+                    <td>{{ request.status }}</td>
+                    <td>
+                        <a href="{% url 'edit_maintenance_request' request.request_id %}" class="btn-small blue darken-2">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

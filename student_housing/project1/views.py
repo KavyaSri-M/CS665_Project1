@@ -85,3 +85,30 @@ def maintenance_success(request):
     return render(request, 'maintenance_success.html')
 
 
+def edit_maintenance_request(request, request_id):
+    maintenance_request = get_object_or_404(MaintenanceRequest, pk=request_id)
+
+    if request.method == 'POST':
+        form = MaintenanceRequestForm(request.POST, instance=maintenance_request)
+        if form.is_valid():
+            form.save()
+            return redirect('maintenance_list')  # Redirect to list page or success page
+    else:
+        form = MaintenanceRequestForm(instance=maintenance_request)
+
+    return render(request, 'edit_maintenance_request.html', {'form': form, 'maintenance_request': maintenance_request})
+
+def delete_maintenance_request(request, request_id):
+    maintenance_request = get_object_or_404(MaintenanceRequest, pk=request_id)
+
+    if request.method == 'POST':
+        maintenance_request.delete()
+        return redirect('maintenance_list')  # After deletion, redirect to list
+
+    return render(request, 'confirm_delete_maintenance.html', {'maintenance_request': maintenance_request})
+
+def maintenance_list(request):
+    maintenance_requests = MaintenanceRequest.objects.all()
+    return render(request, 'maintenance_list.html', {'maintenance_requests': maintenance_requests})
+
+
