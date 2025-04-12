@@ -6,8 +6,10 @@ from django.shortcuts import render
 # views.py
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
-from .forms import StudentSignUpForm
+from .forms import *
 from .models import *
+from django.contrib.auth import login
+
 
 def home(request):
     return render(request,'home.html')
@@ -16,15 +18,36 @@ def student_signup(request):
     if request.method == 'POST':
         form = StudentSignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Account created successfully! Please log in.')
-            return redirect('login')  # Make sure you have a 'login' URL in your urls.py
+            user = form.save()  
+            login(request, user)  
+            messages.success(request, 'Account created successfully!')
+            return redirect('profile') 
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
         form = StudentSignUpForm()
 
     return render(request, 'signup.html', {'form': form})
+
+
+def student_profile(request):
+    student = request.user  # Current logged-in student
+
+    if request.method == 'POST':
+        form = StudentUpdateForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('profile')
+    else:
+        form = StudentUpdateForm(instance=student)
+
+    context = {
+        'student': student,
+        'form': form,
+    }
+
+    return render(request, 'profile.html', context)
 
 
 from .forms import RoomForm
@@ -79,8 +102,11 @@ def add_maintenance_request(request):
     if request.method == 'POST':
         form = MaintenanceRequestForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('maintenance_success')  # Redirect to success page or list
+            maintenance_request = form.save(commit=False)
+            maintenance_request.student = request.user  # set the current logged-in student
+            maintenance_request.save()
+            messages.success(request, 'Maintenance request submitted successfully!')
+            return redirect('maintenance_success')  #   Redirect to success page
     else:
         form = MaintenanceRequestForm()
     return render(request, 'add_maintenance_request.html', {'form': form})
@@ -95,6 +121,8 @@ def edit_maintenance_request(request, request_id):
     if request.method == 'POST':
         form = MaintenanceRequestForm(request.POST, instance=maintenance_request)
         if form.is_valid():
+            maintence_obj = form.save(commit=False)
+            maintence_obj.student = request.user
             form.save()
             return redirect('maintenance_list')  # Redirect to list page or success page
     else:
@@ -122,15 +150,21 @@ def add_room_assignment(request):
     if request.method == 'POST':
         form = RoomAssignmentForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('room_assignment_success')  # Redirect after saving
+            room_assignment = form.save(commit=False)
+            room_assignment.student = request.user  # Set the current logged-in student
+            room_assignment.save()
+            room_assignment.room.is_available = False
+            room_assignment.room.save()
+            messages.success(request, 'Room assigned successfully!')
+            return redirect('room_assignment_list')  # Redirect to list page or success page
     else:
         form = RoomAssignmentForm()
 
     return render(request, 'add_room_assignment.html', {'form': form})
 
 def room_assignment_list(request):
-    assignments = RoomAssignment.objects.all()
+    student = request.user
+    assignments = RoomAssignment.objects.filter(student=student)
     return render(request, 'room_assignment_list.html', {'assignments': assignments})
 
 

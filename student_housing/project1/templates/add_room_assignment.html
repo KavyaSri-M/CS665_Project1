@@ -14,22 +14,23 @@
             <form method="post" class="col s12">
                 {% csrf_token %}
 
-                <div class="input-field col s12">
-                    <label>Student</label>
-                    {{ form.student }}
-                </div>
+                <!-- Student Dropdown -->
 
+            
+
+                <!-- Room Dropdown -->
                 <div class="input-field col s12">
-                    <label>Room</label>
                     {{ form.room }}
                 </div>
 
+                <!-- Start Date Field -->
                 <div class="input-field col s12">
                     {{ form.start_date.label_tag }}
                     {{ form.start_date }}
                 </div>
-
+                <center>
                 <button class="btn waves-effect waves-light blue darken-3" type="submit">Assign Room</button>
+            </center>
             </form>
         </div>
     </div>

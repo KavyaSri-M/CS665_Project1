@@ -3,12 +3,18 @@
 <head>
     <title>Room Assignments List</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        td,th{
+            border: 1px solid gray;
+            text-align: center;
+        }
+    </style>
 </head>
 <body class="blue lighten-5">
 
     <div class="container">
         <h4 class="center-align">Room Assignments</h4>
-
+        {% if assignments %}
         <table class="striped">
             <thead>
                 <tr>
@@ -17,6 +23,7 @@
                     <th>Room ID</th>
                     <th>Room Type</th>
                     <th>Start Date</th>
+                    <th>#</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +43,13 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% else %}
+        <center>
+            <p style="color:red">No Room Assignment Found for you, please request new room</p>
+            <br><br>
+            <a href="/add-room-assignment/" class="btn-small blue darken-2">Request New Room Assignment</a>
+            </center>
+        {% endif %}
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

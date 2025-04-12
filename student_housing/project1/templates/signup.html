@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Sign Up</title>
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+         input[type="checkbox"] {
+opacity: 1 !important;
+position: relative !important;
+}
+
+select{
+    display: block !important;
+}
+
+    </style>
+</head>
+<body class="blue lighten-5">
+
+    <div class="container">
+        <h4 class="center-align">Student Sign Up</h4>
+
+        <!-- Show Django messages -->
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <div class="card-panel {% if message.tags %}{{ message.tags }}{% else %}blue lighten-4{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <form method="post" class="col s12">
+                {% csrf_token %}
+
+                <!-- Loop through form fields -->
+                {% for field in form %}
+                    <div class="input-field col s12">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}
+                            <span class="red-text">{{ field.errors|striptags }}</span>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="center-align">
+                    <button class="btn waves-effect waves-light blue darken-3" type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>

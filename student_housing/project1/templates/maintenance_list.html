@@ -3,11 +3,18 @@
 <head>
     <title>Maintenance Requests List</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        th,td{
+            border: 1px solid gray;
+            text-align: center;
+        }
+    </style>
 </head>
 <body class="blue lighten-5">
 
     <div class="container">
         <h4 class="center-align">Maintenance Requests</h4>
+        {% if maintenance_requests %}
         <table class="striped">
             <thead>
                 <tr>
@@ -29,11 +36,19 @@
                     <td>{{ request.status }}</td>
                     <td>
                         <a href="{% url 'edit_maintenance_request' request.request_id %}" class="btn-small blue darken-2">Edit</a>
+                        <a href="{% url 'delete_maintenance_request' request.request_id %}" class="btn-small red darken-2">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% else %}
+        <center>
+            <p style="color:red">No Maintanence requests found, please raise new request </p>
+            <br>
+            <a href="{% url 'add_maintenance_request' %}" class="btn-small blue darken-2">Add New Maintenance Request</a>
+        </center>
+        {% endif %}
     </div>
 
 </body>
